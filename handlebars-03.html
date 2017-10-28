@@ -29,7 +29,7 @@
 			<ul>
 				{{#each books}}
 				<li {{#isFirst @index}} style="color: red;"{{/isFirst}}
-					{{#isBlue ../books}} style="color:blue;"{{/isBlue}}
+					{{#if ../blue}} style="color:blue;"{{/if}}
 				>
 					{{addone @../index}}-{{addone @index}}{{this}}
 				</li>
@@ -75,6 +75,11 @@
 		//内敛的Helper
 		Handlebars.registerHelper('chinese',function(value) {
 			var arr =['一','二','三'];
+			//如果一个人有超过两本书，那么除了第一本书之外，其余显示为蓝色
+			if(this.books&&this.books.length>2){
+				console.log(this)
+				this.blue =true
+			}
 			return arr[value]
 		})
 		//书籍的前面增加数字序号，格式为卡片序号-书籍序号
@@ -86,18 +91,9 @@
 		//块helper
 		Handlebars.registerHelper('isFirst',function(value,options) {
 			if (value == 0) {
-				console.log(value);
-				console.log(options.fn());
 				return options.fn(this)
 			}
-		})
-		//如果一个人有超过两本书，那么除了第一本书之外，其余显示为蓝色
-		Handlebars.registerHelper('isBlue',function(value,options) {
-			//此处的value相当于books
-			if (value&&value.length>2) {
-				return options.fn(this)
-			}
-		})
+		})		
 		var tpl =$("#card-template").html();
 		var f =Handlebars.compile(tpl);
 		var htmlPage =f(data);
