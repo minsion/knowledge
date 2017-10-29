@@ -1,2 +1,2 @@
-# handlebars
-this is my handlebars project
+# myProject
+This is a tutorial for GitHub and sourceTree
