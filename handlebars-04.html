@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>handlebars</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<!-- 课程组件 -->
+	<script type="text/plan" id="class-template">
+		<ul>
+			{{#each this}}
+			<li>
+				<div class="innerbox">
+					<img src="{{image}}">
+				</div>
+				<div class="titlediv">
+					<div class="title">{{title}}</div>
+					{{#equal hasnote 0}}<div class="note">(有笔记)</div>{{/equal}}
+				</div>
+				<div class="subtitle">{{subtitle}}</div>
+				<div class="subtitle {{#long timespan}} long {{else}} short {{/long}}">{{timespan}}</div>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+	<!-- 分页组件 -->
+	<script type="text/x-handlebars-template" id="pag-template">
+		<ul>
+			{{#each this}}
+			<li data-id={{index}} {{#if cur}} class="cur"{{/if}}
+				{{#if clickable}} class="clickable"{{/if}}>
+				{{{text}}}
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+	<div class="banner">
+		<h1>我的笔记本</h1>
+		<h3>你的指尖，有改变世界的力量</h3>
+	</div>
+	<div class="classes" id="classes">
+		
+	</div>
+	<div class="pag" id="pag">
+		
+	</div>
+	<script type="text/javascript" src="src/jquery.js"></script>
+	<script type="text/javascript" src="src/handlebars.js"></script>
+	<script type="text/javascript" src="src/script.js"></script>
+</body>
+</html>
