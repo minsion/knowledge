@@ -10,7 +10,7 @@
 	<script type="text/plan" id="class-template">
 		<ul>
 			{{#each this}}
-			<li>
+			<li data-id="{{id}}">
 				<div class="innerbox">
 					<img src="{{image}}">
 				</div>
@@ -35,6 +35,25 @@
 			{{/each}}
 		</ul>
 	</script>
+	<!-- 课程笔记 -->
+	<script type="text/x-handlebars-template" id="chapter-template">
+		<ul class="titleul">
+			{{#each this}}
+			<li class="titleli">
+				<div class="title">{{addone @index}}、{{title}}</div>
+				<ul>
+					{{#each subTitle}}
+					<li class="subtitle">
+						{{addone @../index}}-{{addone @index}}、
+						<a href="http://www.imooc.com/{{titletype}}/{{mid}}" target="_blank">{{title}}</a>
+						{{#if timespan}}<span class="time">({{timespan}})</span>{{/if}}
+					</li>
+					{{/each}}
+				</ul>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
 	<div class="banner">
 		<h1>我的笔记本</h1>
 		<h3>你的指尖，有改变世界的力量</h3>
@@ -44,6 +63,14 @@
 	</div>
 	<div class="pag" id="pag">
 		
+	</div>
+	<div class="overlap"></div>
+	<div class="notedetail">
+		<div class="chapterdiv" id="chapterdiv">
+			
+		</div>
+		<div class="notemiddle"></div>
+		<div class="notediv"></div>
 	</div>
 	<script type="text/javascript" src="src/jquery.js"></script>
 	<script type="text/javascript" src="src/handlebars.js"></script>

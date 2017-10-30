@@ -1,5 +1,8 @@
 (function($) {
+	//课程列表的接口
 	var GETCLASSES="http:imoocnote.calfnote.com/inter/getClasses.php";
+	//课程笔记的接口
+	var GETCLASSCHAPTER="http://imoocnote.calfnote.com/inter/getClassChapter.php";
 	$.ajaxSetup({
 		error:function(){
 			alert('ajax系统异常！');
@@ -18,22 +21,45 @@
 		$.getJSON(GETCLASSES,{curPage:curPage},function(data){
 			renderTemplate("#class-template",data.data,"#classes");
 			renderTemplate("#pag-template",formatPag(data),"#pag");
-			$('.clickable').on('click',function(){
-				var me = $(this);
-				console.log(me.data('id'));
-				refreshClasses(me.data('id'))
-			});
 		})
 	}
+	//是否显示笔记本
+	$('.overlap').on('click',function(){
+		showNote(false);
+	})
+	function showNote(show){
+		if (show) {
+			$('.overlap').css('display','block');
+			$('.notedetail').css('display','block');
+		}else{
+			$('.overlap').css('display','none');
+			$('.notedetail').css('display','none');
+		}
+	}
+	function bindClassEvent(){
+		$('#classes').delegate('li','click',function(){
+			var me = $(this);
+			var cid = me.data('id');
+			$.getJSON(GETCLASSCHAPTER,{cid:cid},function(data){
+				console.log(data);
+				renderTemplate("#chapter-template",data,"#chapterdiv");
+				showNote(true);
+			})
+		})
+	}
+	bindClassEvent()
+	//事件委托
+	function bindPagEvent(){
+		$('#pag').delegate('.clickable','click',function(){
+			var me = $(this);
+			refreshClasses(me.data('id'))
+		})
+	}
+	bindPagEvent()
 	$.getJSON(GETCLASSES,{curPage:1},function(data){
 		console.log(data)
 		renderTemplate("#class-template",data.data,"#classes");
 		renderTemplate("#pag-template",formatPag(data),"#pag");
-		$('.clickable').on('click',function(){
-			var me = $(this);
-			console.log(me.data('id'));
-			refreshClasses(me.data('id'))
-		});
 	})
 	Handlebars.registerHelper('equal',function(v1,v2,options){
 		if (v1 == v2) {
@@ -48,6 +74,10 @@
 		}else{
 			return options.inverse(this);
 		}
+	})
+	//定义index+1
+	Handlebars.registerHelper('addone',function(value){
+		return value+1
 	})
 	//分页组件
 	function formatPag(pagData){
