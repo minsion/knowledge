@@ -1,8 +1,10 @@
 (function($) {
 	//课程列表的接口
 	var GETCLASSES="http:imoocnote.calfnote.com/inter/getClasses.php";
-	//课程笔记的接口
+	//课程笔记目录的接口
 	var GETCLASSCHAPTER="http://imoocnote.calfnote.com/inter/getClassChapter.php";
+	//笔记的接口
+	var GETCLASSNOTE="http://imoocnote.calfnote.com/inter/getClassNote.php";
 	$.ajaxSetup({
 		error:function(){
 			alert('ajax系统异常！');
@@ -36,13 +38,16 @@
 			$('.notedetail').css('display','none');
 		}
 	}
+	//点击课程
 	function bindClassEvent(){
 		$('#classes').delegate('li','click',function(){
 			var me = $(this);
 			var cid = me.data('id');
-			$.getJSON(GETCLASSCHAPTER,{cid:cid},function(data){
-				console.log(data);
-				renderTemplate("#chapter-template",data,"#chapterdiv");
+			$.when($.getJSON(GETCLASSCHAPTER,{cid:cid}),
+				$.getJSON(GETCLASSNOTE,{cid:cid}))
+			.done(function(cData,nData){
+				renderTemplate("#chapter-template",cData[0],"#chapterdiv");
+				renderTemplate("#note-template",nData[0],".notediv");
 				showNote(true);
 			})
 		})
@@ -57,7 +62,6 @@
 	}
 	bindPagEvent()
 	$.getJSON(GETCLASSES,{curPage:1},function(data){
-		console.log(data)
 		renderTemplate("#class-template",data.data,"#classes");
 		renderTemplate("#pag-template",formatPag(data),"#pag");
 	})
@@ -78,6 +82,22 @@
 	//定义index+1
 	Handlebars.registerHelper('addone',function(value){
 		return value+1
+	})
+	//日期
+	Handlebars.registerHelper('formatDate',function(value){
+		if (!value) {
+			return "";
+		}
+		var d = new Date(value);
+		var year = d.getFullYear();
+		var month = d.getMonth() + 1;
+		var date = d.getDate();
+		var hour = d.getHours();
+		var minute = d.getMinutes();
+		var second = d.getSeconds();
+		var str =year+"-"+month+"-"+date+" "+hour+":" + minute + ":" +second;
+		return str;
+		return value
 	})
 	//分页组件
 	function formatPag(pagData){
