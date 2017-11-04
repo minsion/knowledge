@@ -94,13 +94,13 @@
 		//如果一个人有超过两本书，那么除了第一本书之外，其余显示为蓝色
 		Handlebars.registerHelper('isBlue',function(value,options) {
 			//此处的value相当于books
-			if (value&&value.length>2) {
+			if (value && value.length > 2) {
 				return options.fn(this)
 			}
 		})
-		var tpl =$("#card-template").html();
-		var f =Handlebars.compile(tpl);
-		var htmlPage =f(data);
+		var tpl = $("#card-template").html();
+		var f = Handlebars.compile(tpl);
+		var htmlPage = f(data);
 		$("#card").html(htmlPage);
 	</script>
 </body>
