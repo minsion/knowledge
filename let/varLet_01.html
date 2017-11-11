@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>let不同于var 不存在变量的提升</title>
+	<!-- <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+	<script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+	<script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script> -->
+</head>
+<body>
+<script type="text/javascript">
+	//ES5
+	var a =[];
+	for (var i = 0; i < 10; i++) {
+		var c = i;
+		a[i] = function () {
+			console.log(c)
+		}
+	}
+	a[5]();
+
+	//ES6
+	var b = []
+	for (var j = 0; j < 10; j++) {
+		let d = j;
+		b[j] = function () {
+			console.log(d)
+		}
+	}
+	b[5]();
+</script>
+</body>
+</html>

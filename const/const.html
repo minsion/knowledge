@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>const</title>
+	<script type="text/javascript" src="traceur/traceur.js"></script>
+	<script type="text/javascript" src="traceur/browserSystem.js"></script>
+	<script type="text/javascript" src="traceur/bootstrap.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	var h = 3.1415926535;
+	console.log(h);
+	(function(a){
+		console.log(a);   //firebug输出123,使用（）运算符
+	})(123);
+
+	(function(a){
+		console.log(a);   //firebug输出1234，使用（）运算符
+	}(1234));
+
+	!function(a){
+		console.log(a);   //firebug输出12345,使用！运算符
+	}(12345);
+
+	+function(a){
+		console.log(a);   //firebug输出123456,使用+运算符
+	}(123456);
+
+	-function(a){
+		console.log(a);   //firebug输出1234567,使用-运算符
+	}(1234567);
+
+	var fn=function(a){
+		console.log(a);   //firebug输出12345678，使用=运算符
+	}(12345678)
+
+</script>
+</body>
+</html>

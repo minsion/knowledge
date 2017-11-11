@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>立即执行函数</title>
+	<script type="text/javascript" src="traceur/traceur.js"></script>
+	<script type="text/javascript" src="traceur/browserSystem.js"></script>
+	<script type="text/javascript" src="traceur/bootstrap.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	//ES5
+	(function(a){
+		console.log(a);   //chrome输出123,使用（）运算符
+	})(123);
+
+	(function(a){
+		console.log(a);   //chrome输出1234，使用（）运算符
+	}(1234));
+
+	!function(a){
+		console.log(a);   //chrome输出12345,使用！运算符
+	}(12345);
+
+	+function(a){
+		console.log(a);   //chrome输出123456,使用+运算符
+	}(123456);
+
+	-function(a){
+		console.log(a);   //chrome输出1234567,使用-运算符
+	}(1234567);
+
+	var fn=function(a){
+		console.log(a);   //chrome输出12345678，使用=运算符
+	}(12345678)
+
+	// function(a){
+	// 	console.log(a)    //语法错误，匿名函数或者说函数声明不能在后面加括号来调用。
+	// }(000); 
+</script>
+<script type="text/traceur">
+	//ES6
+	function fun() {
+		console.log('I am outside!!!');
+	};
+	(function () {
+		if (false) {
+			function fun(){
+				console.log('I am inside!!!');
+			};
+		};
+		fun();
+	}());
+</script>
+</body>
+</html>

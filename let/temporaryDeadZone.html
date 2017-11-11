@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>let暂时性死区不受外界影响</title>
+</head>
+<body>
+<script type="text/javascript">
+	var a = 200;
+	{
+		console.log(a)
+		let a = 100;
+		console.log(a);
+	}
+</script>
+</body>
+</html>

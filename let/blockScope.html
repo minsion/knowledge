@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>let块级作用域</title>
+</head>
+<body>
+<script type="text/javascript">
+	//ES5
+	console.log('ES5：');
+	var time = new Date();
+	function ES5() {
+		console.log(time);
+		if (false) {
+			var time = 'Hello World !'
+		}
+	}
+	ES5();
+	//ES6
+	console.log('ES6：');
+	function ES6() {
+		let num = 100;
+		if (true) {
+			let num = 200;
+		}
+		console.log(num);
+	}
+	ES6()
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>let模块内部不允许重复声明，但是模块与模块之间允许重复声明</title>
+</head>
+<body>
+<script type="text/javascript">
+	{
+		var a = 100;
+		var a = 200;
+	}
+	console.log(a)
+	//报错	
+	{
+		var b = 100;
+		let b = 200;
+	}
+	console.log(b)
+	//报错
+	{
+		let c = 100;
+		var c = 200;
+	}
+	console.log(c)
+	//报错
+	{
+		let d = 100;
+		let d = 200;
+	}
+	console.log(d)	
+</script>
+</body>
+</html>
