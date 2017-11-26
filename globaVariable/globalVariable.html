@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>全局变量</title>
+	<script type="text/javascript" src="traceur/traceur.js"></script>
+	<script type="text/javascript" src="traceur/browserSystem.js"></script>
+	<script type="text/javascript" src="traceur/bootstrap.js"></script>
+</head>
+<body>
+<script type="text/traceur">
+	var varName = 'varValue';
+	//浏览器的全局变量
+	console.log(window.varName);
+	//node.js的全局变量
+	//console.log(global.varName);
+	//通用的全局变量
+	console.log(this.varName);
+
+	let letName = 'letValue';
+	console.log(window.letName);
+	console.log(this.letName);
+</script>
+</body>
+</html>

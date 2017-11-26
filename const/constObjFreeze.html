@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>const</title>
+	<script type="text/javascript" src="traceur/traceur.js"></script>
+	<script type="text/javascript" src="traceur/browserSystem.js"></script>
+	<script type="text/javascript" src="traceur/bootstrap.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	const person = Object.freeze({});
+	person.name = '张山疯';
+	person.age = 12;
+	console.log(person.name);
+	console.log(person.age);
+	console.log(person);
+</script>
+</body>
+</html>
