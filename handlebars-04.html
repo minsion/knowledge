@@ -6,7 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<!-- 课程组件 -->
+	<div class="banner">
+		<h1>我的笔记本</h1>
+		<h3>你的指尖，有改变世界的力量</h3>
+	</div>
+	<!-- 课程 -->
+	<div class="classes" id="classes"></div>
+	<!-- 课程模板组件 -->
 	<script type="text/plan" id="class-template">
 		<ul>
 			{{#each this}}
@@ -24,7 +30,9 @@
 			{{/each}}
 		</ul>
 	</script>
-	<!-- 分页组件 -->
+	<!-- 分页 -->
+	<div class="pag" id="pag"></div>
+	<!-- 分页模板组件 -->
 	<script type="text/x-handlebars-template" id="pag-template">
 		<ul>
 			{{#each this}}
@@ -35,62 +43,49 @@
 			{{/each}}
 		</ul>
 	</script>
-	<!-- 课程笔记 -->
-	<script type="text/x-handlebars-template" id="chapter-template">
-		<ul class="titleul">
-			{{#each this}}
-			<li class="titleli">
-				<div class="title">{{addone @index}}、{{title}}</div>
-				<ul>
-					{{#each subTitle}}
-					<li class="subtitle">
-						{{addone @../index}}-{{addone @index}}、
-						<a href="http://www.imooc.com/{{titletype}}/{{mid}}" target="_blank">{{title}}</a>
-						{{#if timespan}}<span class="time">({{timespan}})</span>{{/if}}
-						{{#equal titletype 'code'}}
-						<span class="type">(编程)</span>
-						{{else}}
-							{{#equal titletype 'ceping'}}
-							<span class="type">(练习)</span>
-							{{/equal}}
-						{{/equal}}
-					</li>
-					{{/each}}
-				</ul>
-			</li>
-			{{/each}}
-		</ul>
-	</script>
-	<!-- 笔记 -->
-	<script type="text/x-handlebars-template" id="note-template">
-		<ul class="noteul">
-			{{#each this}}
-			<li>
-				<div class="time">{{formatDate notetime}}</div>
-				<div class="content">{{{content}}}</div>
-			</li>
-			{{/each}}
-		</ul>
-	</script>
-	<div class="banner">
-		<h1>我的笔记本</h1>
-		<h3>你的指尖，有改变世界的力量</h3>
-	</div>
-	<div class="classes" id="classes">
-		
-	</div>
-	<div class="pag" id="pag">
-		
-	</div>
 	<div class="overlap"></div>
 	<div class="notedetail">
-		<div class="chapterdiv" id="chapterdiv">
-			
-		</div>
+		<!-- 课程章节 -->
+		<div class="chapterdiv" id="chapterdiv"></div>
+		<!-- 课程章节模板组件 -->
+		<script type="text/x-handlebars-template" id="chapter-template">
+			<ul class="titleul">
+				{{#each this}}
+				<li class="titleli">
+					<div class="title">{{addone @index}}、{{title}}</div>
+					<ul>
+						{{#each subTitle}}
+						<li class="subtitle">
+							{{addone @../index}}-{{addone @index}}、
+							<a href="http://www.imooc.com/{{titletype}}/{{mid}}" target="_blank">{{title}}</a>
+							{{#if timespan}}<span class="time">({{timespan}})</span>{{/if}}
+							{{#equal titletype 'code'}}
+							<span class="type">(编程)</span>
+							{{else}}
+								{{#equal titletype 'ceping'}}
+								<span class="type">(练习)</span>
+								{{/equal}}
+							{{/equal}}
+						</li>
+						{{/each}}
+					</ul>
+				</li>
+				{{/each}}
+			</ul>
+		</script>
 		<div class="notemiddle"></div>
-		<div class="notediv" id="notediv">
-			
-		</div>
+		<div class="notediv" id="notediv"></div>
+		<!-- 笔记模板组件 -->
+		<script type="text/x-handlebars-template" id="note-template">
+			<ul class="noteul">
+				{{#each this}}
+				<li>
+					<div class="time">{{formatDate notetime}}</div>
+					<div class="content">{{{content}}}</div>
+				</li>
+				{{/each}}
+			</ul>
+		</script>
 	</div>
 	<script type="text/javascript" src="src/jquery.js"></script>
 	<script type="text/javascript" src="src/handlebars.js"></script>
