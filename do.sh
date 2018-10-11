@@ -1,7 +1,8 @@
 #!/bin/bash
 set -o errexit
-
-echo -e "0.创建分支[createBranch]\n1.拉取代码[pull]\n2.上传代码[gitPush]\n3.创建页面[page]"
+S="\033[32m"
+E="\033[0m"
+echo -e "${S}0${E}:创建分支[createBranch]\n${S}1${E}:拉取代码[pull]\n${S}2${E}:上传代码[gitPush]\n${S}3${E}:创建页面[page]"
 echo -n "输入你想要的操作:"
 read type
 
