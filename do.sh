@@ -36,11 +36,11 @@ gitDO(){
 pullDO(){
 	branch=`git symbolic-ref --short -q HEAD`
 	git pull
-	echo "pull √"
+	echo -e "\033[32m pull √ \033[0m"
 	git pull origin $branch
-	echo "pull $branch √"
+	echo -e "\033[32m pull $branch √ \033[0m"
 	git status
-	echo "status √"
+	echo -e "\033[32m status √ \033[0m"
 }
 
 pageDO(){
