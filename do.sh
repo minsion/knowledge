@@ -26,7 +26,7 @@ gitDO(){
 	echo "注释内容:$commit"
 	echo "当前分支是${branch}开始推送"
 	git add -A
-	echo "add √"
+	echo -e "\033[32m add √ \033[0m"
 	git commit -m "$commit"
 	echo "commit √"
 	git push origin $branch
@@ -57,8 +57,6 @@ pageDO(){
 		node mm/$init page $pagename
 	fi
 }
-
-
 
 ${type}DO
 
