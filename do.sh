@@ -28,9 +28,9 @@ gitDO(){
 	git add -A
 	echo -e "\033[32m add √ \033[0m"
 	git commit -m "$commit"
-	echo "commit √"
+	echo -e "\033[32m commit √ \033[0m"
 	git push origin $branch
-	echo "push √"
+	echo -e "\033[32m push √ \033[0m"
 }
 
 pullDO(){
