@@ -27,11 +27,11 @@ gitDO(){
 	echo "注释内容:$commit"
 	echo "当前分支是${branch}开始推送"
 	git add -A
-	echo -e "\033[32m add √ \033[0m"
+	echo -e "${S} add √ ${E}"
 	git commit -m "$commit"
-	echo -e "\033[32m commit √ \033[0m"
+	echo -e "${S} commit √ ${E}"
 	git push origin $branch
-	echo -e "\033[32m push √ \033[0m"
+	echo -e "${S} push √ ${E}"
 }
 
 pullDO(){
@@ -39,9 +39,9 @@ pullDO(){
 	git pull
 	echo -e "\033[32m pull √ \033[0m"
 	git pull origin $branch
-	echo -e "\033[32m pull $branch √ \033[0m"
+	echo -e "${S} pull $branch √ ${E}"
 	git status
-	echo -e "\033[32m status √ \033[0m"
+	echo -e "${S} status √ ${E}"
 }
 
 pageDO(){
