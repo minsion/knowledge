@@ -15,7 +15,7 @@ createBranchDO(){
 	git checkout master
 	git fetch --all
 	git reset --hard origin/master
-	git checkout -b daily/$newbranch
+	git checkout -b dev/$newbranch
 }
 
 gitDO(){
